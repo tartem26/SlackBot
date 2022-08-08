@@ -1,6 +1,4 @@
-# ![logo](https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg) [Slack](https://slack.com/) Bot   @HappyDog
-
-![Richie photo](/img/DogPhoto.jpg)
+# ![logo](https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg) [Slack](https://slack.com/) Bot  @HappyDog
 
 This bot was created as **Adobe Career Academy Project**
 
