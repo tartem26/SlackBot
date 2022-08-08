@@ -84,12 +84,12 @@ def weather_command(request, cmd, params, say, logger):
     )
 
     say(
-        "In " + params + "\n" +
-        "Weather: " + str(data.json().get('weather')[0].get('main')) + "\n" +
-        "Temperature: " + str(data.json().get('main')['temp']) + "°C" + "\n" +
-        "Min/Max Temperature: " + str(data.json().get('main')['temp_min']) + "°C/" + str(data.json().get('main')['temp_max']) + "°C" + "\n" +
-        "Humidity: " + str(data.json().get('main')['humidity']) + "%" + "\n" +
-        "Wind: " + str(data.json().get('wind')['speed']) + "km/h"
+        f"In {params} \n" +
+        f"Weather: {data.json().get('weather')[0].get('main')} \n" +
+        f"Temperature: {data.json().get('main')['temp']}°C\n" +
+        f"Min/Max Temperature: {data.json().get('main')['temp_min']}°C/{data.json().get('main')['temp_max']}°C\n" +
+        f"Humidity: {data.json().get('main')['humidity']}%\n" +
+        f"Wind: {data.json().get('wind')['speed']}km/h"
     )
 
 # Help command
