@@ -2,7 +2,7 @@ import logging
 import os
 import datetime
 import random
-# import requests, json
+import requests
 from dotenv import load_dotenv
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
@@ -57,13 +57,10 @@ def welcome_command(request, cmd, params, say, logger):
         @Happy dog
             1) welcome - to see the welcome message 🙃
             2) time - to get the current date and time 🕓
-            3) weather - to get the weather in San Jose ☀️
-            3) timeConvert - 
-            3) help - to get help and pin the lingering question in the chat ✋
-            4) sleep - to get the remaining time until the healthy scheduled time to sleep 🌙
-            5) lofi - to listen to beats for relaxation, working, or studying 💫
-            6) party - what is the celebration? 
-            7) Silicon Valley mode - 
+            3) weather - to get the weather over the world ☀️
+            4) help - to get help by emphasizing the problem ✋
+            5) sleep - to get the remaining time until the healthy scheduled time to sleep 🌙
+            6) lofi - to listen to beats for relaxation, working, or studying 💫
 
         Enjoy this beautiful day and call me when you need me 🐕
         '''
@@ -74,15 +71,30 @@ def time_command(request, cmd, params, say, logger):
     # get current time
     current_time = datetime.datetime.now()
     
-    say("Date: " + str(current_time.day) + "/" + str(current_time.month) + "/" + str(current_time.year) + "\n" + "Time: " + str(current_time.hour) + ":" + str(current_time.minute) + ":" + str(current_time.second))
+    say("Date: " + str(current_time.day) + "/" + str(current_time.month) + "/" + str(current_time.year) + "\n" +
+    "Time: " + str(current_time.hour) + ":" + str(current_time.minute) + ":" + str(current_time.second))
 
-# # Weather command
-# def weather_command(request, cmd, params, say, logger):    
-#     say("Da")
+# Weather command
+def weather_command(request, cmd, params, say, logger):
+    api_key = "4256b3de394a56a86ee35e43af6f5c2e"
+    #city = "San Jose"
+
+    data = requests.get(
+        f"https://api.openweathermap.org/data/2.5/weather?q={params}&units=metric&APPID={api_key}"
+    )
+
+    say(
+        "In " + params + "\n" +
+        "Weather: " + str(data.json().get('weather')[0].get('main')) + "\n" +
+        "Temperature: " + str(data.json().get('main')['temp']) + "°C" + "\n" +
+        "Min/Max Temperature: " + str(data.json().get('main')['temp_min']) + "°C/" + str(data.json().get('main')['temp_max']) + "°C" + "\n" +
+        "Humidity: " + str(data.json().get('main')['humidity']) + "%" + "\n" +
+        "Wind: " + str(data.json().get('wind')['speed']) + "km/h"
+    )
 
 # Help command
 def help_command(request, cmd, params, say, logger):
-    say("command1: " + params)
+    say("❗ ❗ ❗" + "Need help with: " + params + "❗ ❗ ❗")
 
 # Sleep command
 def sleep_command(request, cmd, params, say, logger):
